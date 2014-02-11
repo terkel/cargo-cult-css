@@ -1,4 +1,3 @@
-cargo-cult-css
-==============
+# カーゴ・カルト CSS
 
-Japanese translation of “Cargo Cult CSS.”
+[kapowaz: Cargo Cult CSS](http://www.kapowaz.net/articles/cargo-cult-css) の日本語訳。
