@@ -126,8 +126,6 @@ div.breaking {
 <span class="display-block blue-box font-arial color-blue solid-blue-border padding-20">Wassuuuuuuup!</span>
 ```
 
-This might seem like an extreme example, but it’s the logical conclusion of a CSS framework methodology that abandons semantic class names and selectors in the pursuit of ‘modularisation’. While avoiding duplication of code within the CSS, it is simply transferred to the markup, incurring close-coupling side-effects in the process.
-
 極端な例に見えるかもしれないが、これは CSS フレームワーク方法論が「モジュラー化」を追い求めてセマンティックなクラス名とセレクターを捨てた当然の帰結だ。CSS 内でのコードの重複を避ける一方、その重複はただ単にマークアップに転移し、その過程で密結合という副作用を招いている。
 
 また CSS フレームワーク方法論の別の目標として、高いパフォーマンスの実現というものもある。パフォーマンスは多くの要因に依存するものだ。ウェブページを利用しているクライアントの種類や、接続速度、コンテンツのキャッシュなど。基本的に、CSS のパフォーマンスに明らかに影響するのは次の 3 つだ。
