@@ -82,73 +82,73 @@
 
 <p>CSSフレームワーク方法論の背後にあるもっとも重要な目的は、このうち最初の、サイト中のCSSコードの重複の問題を解決することだろう。クラス名による短いセレクターは、実用的で、あらゆる要素間でルールを共有できる。次の例を見てほしい。このクラスはどんな要素にも同じボーダー、パディング、タイポグラフィを適用する。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-css"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">standard </span><span class="pun">{</span><span class="pln">
-    color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln">
-    border</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pln"> solid blue</span><span class="pun">;</span><span class="pln">
-    border</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5px</span><span class="pun">;</span><span class="pln">
-    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Helvetica</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> normal</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1rem</span><span class="pun">;</span><span class="pln">
-    line</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1.4</span><span class="pun">;</span><span class="pln">
-</span><span class="pun">}</span></code></pre>
+<pre><code class="language-css">.box-standard {
+  color: blue;
+  border: 2px solid blue;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.4;
+}</code></pre>
 
 <p>このクラスをどのような要素に適用してもそのスタイルになる。もしそのスタイルの全部は必要なく、かわりに特定のプロパティを上書きしたいなら、次のソース例のように別のクラスを宣言すればいい。これらのクラスの特定度は同じなので、後者の宣言が優先される。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-css"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">special </span><span class="pun">{</span><span class="pln">
-    color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span><span class="pln">
-    border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span><span class="pln">
-</span><span class="pun">}</span></code></pre>
+<pre><code class="language-css">.box-special {
+  color: red;
+  border-color: red;
+  font-weight: bold;
+}</code></pre>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-html"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"box-standard box-special"</span><span class="tag">&gt;</span><span class="pln">
-    Here is a special box!
-</span><span class="tag">&lt;/div&gt;</span></code></pre>
+<pre><code class="language-html">&lt;div class=&quot;box-standard box-special&quot;&gt;
+  Here is a special box!
+&lt;/div&gt;</code></pre>
 
 <p>やりたかったのはコードの重複を減らすことだったはずだが、この方法でクラスを実装すると、マークアップはこの<em>両方</em>のクラスの存在に永遠に縛られることになる。どちらのクラスも特定のセマンティクスを伝えていないにもかかわらず。</p>
 
 <p>こんなときこそ求められるのが、<a href="http://lesscss.org" title="LESS « The Dynamic Stylesheet language">LESS</a>や<a href="http://sass-lang.com" title="Sass - Syntactically Awesome Stylesheets">Sass</a>などのCSSプリプロセッサーにある<em>ミックスイン</em>や<em>継承</em>の組み合わせだ。必要なプロパティは<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins" title="Sass Documentation — Mixin Directives">ミックスイン</a>や<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#placeholders" title="Sass Documentation — @extend-only Selectors">プレースホルダー</a>でひとまとめにできるし、もろにプレゼンテーショナルな名前をつけても（デバッグのためにあえてそうしない限り）生成されるコードには現れないし、そのルールはどんなセレクターにも使い回せる。以下は<a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html" title="SASS Reference">SCSS構文</a>でのミックスインの簡単な例。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-scss"><span class="lit">@mixin</span><span class="pln"> news</span><span class="pun">-</span><span class="pln">item</span><span class="pun">(</span><span class="pln">$color</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-    border</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pln"> solid $color</span><span class="pun">;</span><span class="pln">
-    border</span><span class="pun">-</span><span class="pln">radius</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5px</span><span class="pun">;</span><span class="pln">
-    padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Helvetica</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> normal</span><span class="pun">;</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1rem</span><span class="pun">;</span><span class="pln">
-    line</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1.4</span><span class="pun">;</span><span class="pln">
-</span><span class="pun">}</span><span class="pln">
+<pre><code class="language-scss">@mixin news-item($color) {
+  border: 2px solid $color;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.4;
+}
 
-div</span><span class="pun">.</span><span class="pln">news </span><span class="pun">{</span><span class="pln">
-    </span><span class="lit">@include</span><span class="pln"> news</span><span class="pun">-</span><span class="pln">item</span><span class="pun">(</span><span class="pln">blue</span><span class="pun">);</span><span class="pln">
-</span><span class="pun">}</span><span class="pln">
+div.news {
+  @include news-item(blue);
+}
 
-div</span><span class="pun">.</span><span class="pln">breaking </span><span class="pun">{</span><span class="pln">
-    </span><span class="lit">@include</span><span class="pln"> news</span><span class="pun">-</span><span class="pln">item</span><span class="pun">(</span><span class="pln">red</span><span class="pun">);</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span><span class="pln">
-</span><span class="pun">}</span></code></pre>
+div.breaking {
+  @include news-item(red);
+  font-weight: bold;
+}</code></pre>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-html"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"news"</span><span class="tag">&gt;</span><span class="pln">
-    Here is a news item.
-</span><span class="tag">&lt;/div&gt;</span><span class="pln">
+<pre><code class="language-html">&lt;div class=&quot;news&quot;&gt;
+  Here is a news item.
+&lt;/div&gt;
 
-</span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"breaking"</span><span class="tag">&gt;</span><span class="pln">
-    Here is a breaking news item!
-</span><span class="tag">&lt;/div&gt;</span></code></pre>
+&lt;div class=&quot;breaking&quot;&gt;
+  Here is a breaking news item!
+&lt;/div&gt;</code></pre>
 
 <p>ミックスインのスタイル宣言に変更を加えるとつねに<code>div.breaking</code>セレクターも連動する。マークアップとはこれ以上ないくらい疎結合の状態だ。こういったミックスインをネイティブなCSSで定義できないのはとても残念だが（ありがたいことにようやく<a href="http://lists.w3.org/Archives/Public/www-style/2011Mar/0478.html" title="W3C www-style mailing list: CSS Mixins proposal by Tab Atkins Jr.">正式に検討されはじめた</a>）、プロとしてCSSを書くならCSSプリプロセッサーを使わない理由はどこにもない。</p>
 
 <p>疎結合や<em><a href="http://ja.wikipedia.org/wiki/%E9%96%A2%E5%BF%83%E3%81%AE%E5%88%86%E9%9B%A2" title="関心の分離">関心の分離</a></em>といったものは、プロジェクトの将来にわたるメンテナンスにおいて極めて重要だ。マークアップとCSSを密結合にしすぎると修正のコストが増大してしまう。CSSがまだ生まれて間もない頃には、DreamweaverやFrontpageといったWYSIWYGエディターの増殖が多くのウェブサイトを次のようなコードへと導いたものだった。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-html"><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11px</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pun">;</span><span class="pln"> padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Here’s a box.</span><span class="tag">&lt;/span&gt;</span><span class="pln">
-</span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11px</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pun">;</span><span class="pln"> padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Here’s another box.</span><span class="tag">&lt;/span&gt;</span><span class="pln">
-</span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11px</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pun">;</span><span class="pln"> padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Here’s yet another box. Noticing a trend yet…?</span><span class="tag">&lt;/span&gt;</span></code></pre>
+<pre><code class="language-html">&lt;span style=&quot;display: block; font-family: Arial, sans-serif; font-size: 11px; color: blue; border-style: solid; border-color: blue; border-width: 2px; padding: 20px;&quot;&gt;Here&rsquo;s a box.&lt;/span&gt;
+&lt;span style=&quot;display: block; font-family: Arial, sans-serif; font-size: 11px; color: blue; border-style: solid; border-color: blue; border-width: 2px; padding: 20px;&quot;&gt;Here&rsquo;s another box.&lt;/span&gt;
+&lt;span style=&quot;display: block; font-family: Arial, sans-serif; font-size: 11px; color: blue; border-style: solid; border-color: blue; border-width: 2px; padding: 20px;&quot;&gt;Here&rsquo;s yet another box. Noticing a trend yet&hellip;?&lt;/span&gt;</code></pre>
 
 <p>こういったインラインのスタイルに基づいたマークアップは、90年代後半にウェブをおとしめていたグチャグチャのタグの山に比べれば多少はまし、というものでしかない。デザインが変更されるたび、これらすべてのインライン・スタイルを追跡して書き換える必要がある。僕らはこの手の地獄のような開発からは逃げ出したが、しかし悲しいことに、これまでの教訓も忘れ去られてしまったらしく、いまだに次のようなコードに遭遇することがある。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-html"><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"display-block blue-box font-arial color-blue solid-blue-border padding-20"</span><span class="tag">&gt;</span><span class="pln">Party like it’s 1999!</span><span class="tag">&lt;/span&gt;</span><span class="pln">
-</span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"display-block blue-box font-arial color-blue solid-blue-border padding-20"</span><span class="tag">&gt;</span><span class="pln">Hey, have you checked K10K.net lately?</span><span class="tag">&lt;/span&gt;</span><span class="pln">
-</span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"display-block blue-box font-arial color-blue solid-blue-border padding-20"</span><span class="tag">&gt;</span><span class="pln">Wassuuuuuuup!</span><span class="tag">&lt;/span&gt;</span></code></pre>
+<pre><code class="language-html">&lt;span class=&quot;display-block blue-box font-arial color-blue solid-blue-border padding-20&quot;&gt;Party like it&rsquo;s 1999!&lt;/span&gt;
+&lt;span class=&quot;display-block blue-box font-arial color-blue solid-blue-border padding-20&quot;&gt;Hey, have you checked K10K.net lately?&lt;/span&gt;
+&lt;span class=&quot;display-block blue-box font-arial color-blue solid-blue-border padding-20&quot;&gt;Wassuuuuuuup!&lt;/span&gt;</code></pre>
 
 <p>極端な例に見えるかもしれないが、これはCSSフレームワーク方法論が「モジュラー化」を追い求めてセマンティックなクラス名とセレクターを捨てた当然の帰結だ。CSS内でのコードの重複を避ける一方、その重複はただ単にマークアップに転移し、その過程で密結合という副作用を招いている。</p>
 
@@ -175,17 +175,17 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
 
 <p>CSSフレームワーク方法論のもっとも深刻な問題のいくつかは、古いコードを見返したときや、新しいチーム・メンバーがプロジェクトに加わったときに露わになる。これはおもに「探しやすさ」をほとんど考慮していないことが原因だ。ニコラス・ギャラガーはフロントエンド・アーキテクチャーについての記事で「クラス名はディベロッパーに有益な情報を伝えるものであるべきだ」と言っているが、僕はこれをもう一歩推し進めたい。<em>セレクター</em>はディベロッパーに有益な情報を伝えるものであるべきだ。両者の目的は同じで、<em>そのルールがどこで使われているのか知りたい</em>というものだが、セレクターは<em>コンテキスト</em>を伝えるという点でずっと有益だ。もしセレクターが<em>決められた範囲内</em>の要素にだけ適用されるということがわかれば、そのルールの背後にある意図を理解するのはずっと簡単だ。次に挙げる、名簿のリンクをスタイリングする2つの方法について考えてみてほしい。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-css"><span class="pun">.</span><span class="pln">list</span><span class="pun">-</span><span class="pln">link </span><span class="pun">{</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span><span class="pln">
-    text</span><span class="pun">-</span><span class="pln">decoration</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="pln">
-</span><span class="pun">}</span></code></pre>
+<pre><code class="language-css">.list-link {
+  font-weight: bold;
+  text-decoration: none;
+}</code></pre>
 
 <p>またはこう。</p>
 
-<pre class="prettyprint prettyprinted" style=""><code class="language-css"><span class="pln">ul</span><span class="pun">.</span><span class="pln">members li a </span><span class="pun">{</span><span class="pln">
-    font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span><span class="pln">
-    text</span><span class="pun">-</span><span class="pln">decoration</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="pln">
-</span><span class="pun">}</span></code></pre>
+<pre><code class="language-css">ul.members li a {
+  font-weight: bold;
+  text-decoration: none;
+}</code></pre>
 
 <p>後者は、そのコードベースにはじめて触れたり、しばらく離れていたりして馴染みが薄かったとしても、難なく理解できるはずだ。そしてまた「探しやすい」という性質も持っている。新入りのデベロッパーの場合を考えてみよう。彼らからすると、そのCSSコードベースを丸ごと読んだり（あるいは覚えたり）しない限り、そこに一貫したルールがあるかどうか知りようがない。彼らに過度な期待をするのは現実的ではないだろう。彼らは十中八九、繰り返しを減らすという目標に完全に反して、同じ結果を得るために別の新しいルールを書こうとする。</p>
 
