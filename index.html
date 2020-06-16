@@ -23,10 +23,12 @@
 
 <h2 id="semantics">セマンティクス</h2>
 
-<blockquote>
-  <p>コンピューター・サイエンスで難しいことは2つしかない。キャッシュの無効化と、命名だ。<br>
-  </p><footer>— フィル・カールトン<a href="#fn:karlton" id="fnref:karlton" title="See footnote" class="footnote">1</a>
-</footer></blockquote>
+<figure>
+  <blockquote>
+    <p>コンピューター・サイエンスで難しいことは2つしかない。キャッシュの無効化と、命名だ。</p>
+  </blockquote>
+  <figcaption>&#x2015;&#x2015;フィル・カールトン<a href="#fn:karlton" id="fnref:karlton" title="See footnote" class="footnote">1</a></figcaption>
+</figure>
 
 <p>ウェブは基本的に<em>セマンティックなメディア</em>だ。様々な言語、文化、性、世代、肉体的および認知的能力を持った人々が、あらゆる種類の技術を通じて利用できることを目指すプラットフォームとして、この点はきわめて重要だ。ウェブがどうあるべきか、またはどう見えるべきかを示す唯一のビジョンはない。明らかに限られた領域で開発しているのでない限り、セマンティックなアプローチこそがウェブ・ディベロッパーのあらゆる行動の中心であるべきだ。</p>
 
@@ -34,29 +36,37 @@
 
 <p>この3つの中で、HTMLドキュメントにプレゼンテーションを結びつけるにはクラス名がもっとも一般的に使われている。クラス名について論じるにあたって、W3Cの最新のHTML5勧告候補が次のように記している点に注意してほしい。</p>
 
-<blockquote>
-  <p><code>class</code>属性で用いることのできるトークンにとくに制限はないが、その内容にどのような体裁を持たせたいかではなく、その内容の性質を表現する値が推奨される。<a href="#fn:html5-dom" id="fnref:html5-dom" title="See footnote" class="footnote">2</a>
-</p></blockquote>
+<figure>
+  <blockquote>
+    <p><code>class</code>属性で用いることのできるトークンにとくに制限はないが、その内容にどのような体裁を持たせたいかではなく、その内容の性質を表現する値が推奨される。<a href="#fn:html5-dom" id="fnref:html5-dom" title="See footnote" class="footnote">2</a></p>
+  </blockquote>
+</figure>
 
 <p><code>class</code>属性の仕様のどこを見ても、この属性の果たす<em>目的</em>として、コンテンツのセマンティクスを表現するということ<em>以外</em>は書いていない。にもかかわらず、じつに多くのウェブ・ディベロッパーが<code>class</code>属性について「CSSクラス」などといった間違った呼び方をしている。タンテク・チェリクはこう書いている。</p>
 
-<blockquote>
-  <p>「CSSクラス」や「CSSクラス名」といった言い回しを使うということは、その言い回しが不正確である (あるいはただ単に間違っている) というだけではない。それは「CSS」のプレゼンテーショナルな文脈と概念をクラス名と結びつけ、プレゼンテーショナルなクラス名を使うというバッド・プラクティスをほのめかしたり、あまつさえ奨励したりすることになる。<a href="#fn:celik" id="fnref:celik" title="See footnote" class="footnote">3</a>
-</p></blockquote>
+<figure>
+  <blockquote>
+    <p>「CSSクラス」や「CSSクラス名」といった言い回しを使うということは、その言い回しが不正確である（あるいはただ単に間違っている）というだけではない。それは「CSS」のプレゼンテーショナルな文脈と概念をクラス名と結びつけ、プレゼンテーショナルなクラス名を使うというバッド・プラクティスをほのめかしたり、あまつさえ奨励したりすることになる。<a href="#fn:celik" id="fnref:celik" title="See footnote" class="footnote">3</a></p>
+  </blockquote>
+</figure>
 
 <p>フレームワーク方法論は勧告と完全に食い違っているが、彼らは勧告を軽視する道を選んだ。その手のプロジェクトでのクラス名はプレゼンテーションを表現している<em>必要があり</em>、非セマンティックにならざるを得ない。<a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/" title="About HTML semantics and front-end architecture">そうではないと主張しているにもかかわらず</a>。それにしてもなぜ、セマンティックなクラス名がそこまで重要なのか? もっとも基本的なレベルで言うと、ティム・バーナーズ＝リーが「<a href="http://www.scientificamerican.com/article.cfm?id=long-live-the-web" title="Long Live the Web: A Call for Continued Open Standards and Neutrality">ウェブの普遍性</a>」と表現したところの、プラットフォームに依存しない、包括的デザイン原則の維持が目的だ。また、いま僕たちが作っているものが、将来どんな技術によって利用されることになるかは予測できないからでもある。</p>
 
-<blockquote>
-  <p>HTMLがセマンティックかどうか簡単にテストするには、そのHTMLがパブリックAPIとして利用できるかどうかを考えてみるといい。<br>
-  </p><footer>— アレックス・ゲイナー<a href="#fn:gaynor" id="fnref:gaynor" title="See footnote" class="footnote">4</a>
-</footer></blockquote>
+<figure>
+  <blockquote>
+    <p>HTMLがセマンティックかどうか簡単にテストするには、そのHTMLがパブリックAPIとして利用できるかどうかを考えてみるといい。</p>
+  </blockquote>
+  <figcaption>&#x2015;&#x2015;アレックス・ゲイナー<a href="#fn:gaynor" id="fnref:gaynor" title="See footnote" class="footnote">4</a></figcaption>
+</figure>
 
 <p>この件についての例として<a href="http://microformats.org/about" title="About Microformats">Microformats</a>が挙げられる。Microformatsが生まれたのは、ドキュメントの製作者が住所やカレンダーといったよくある仕組みを表現するのに<em>セマンティックなクラス名</em>を使ってきたからにほかならない。このようにデータを表現する上での慣例を体系化できれば、マークアップはウェブサイトの利用者だけではなく、それをまったく新しいやり方で利用するソフトウェアにとっても有益なものになる。Microformatsがセマンティックなクラス名は有用だと証明しているのに、それが否定されるのを見ると残念な気持ちになる。</p>
 
-<blockquote>
-  <p>クラス名は、機械にも人間にも、セマンティックな情報を伝えることはほとんどない。それがMicroformatsという、合意を得た (かつマシーン・リーダブルな) 名前の小さな集まりでもない限り。<br>
-  </p><footer>— ニコラス・ギャラガー<a href="#fn:gallagher" id="fnref:gallagher" title="See footnote" class="footnote">5</a>
-</footer></blockquote>
+<figure>
+  <blockquote>
+    <p>クラス名は、機械にも人間にも、セマンティックな情報を伝えることはほとんどない。それがMicroformatsという、合意を得た（かつマシーン・リーダブルな）名前の小さな集まりでもない限り。</p>
+  </blockquote>
+  <figcaption>&#x2015;&#x2015;ニコラス・ギャラガー<a href="#fn:gallagher" id="fnref:gallagher" title="See footnote" class="footnote">5</a></figcaption>
+</figure>
 
 <p>これは恣意的な表現だ。今日作られ、発表されているコンテンツの、将来にわたる利用のすべての可能性に対して、「合意を得た名前の集まり」とは。この表現はCSSフレームワークのイデオロギーを正当化したいがためのものだ。非セマンティックなクラス名を許すと、ドキュメントの構造とコンテンツがプレゼンテーションの影響を受けるようになってしまう。それは明らかに<a href="http://en.wikipedia.org/wiki/Law_of_Demeter" title="Law of Demeter">関心の分離</a>に反する。</p>
 
@@ -156,10 +166,12 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
 
 <p>CSSセレクターを短く保つことはパフォーマンス上の利点があると、CSSフレームワーク方法論の支持者はしばしば引き合いに出す。しかしこのことは<a href="http://calendar.perfplanet.com/2011/css-selector-performance-has-changed-for-the-better/" title="CSS Selector Performance has changed! (For the better)">すでに反証されており</a>、モダンなブラウザー・エンジンはごくまれな場合を除いて充分に手際が良く、セレクターを書き換えることによるスピードの向上は取るに足りない程度のものだ。一方で、フロントエンドのパフォーマンスには追求する価値があるのは間違いない。</p>
 
-<blockquote>
-  <p>多くの人が気づいていないと思うんだけど (それとも話そうとしないだけ?)、パフォーマンスの実現には現実的かつ具体的なコストがかかることがよくあって、メンテナンス性を食いつぶす結果にもなる。<br>
-  </p><footer>— ニールス・マティス<a href="#fn:matthijs" id="fnref:matthijs" title="See footnote" class="footnote">6</a>
-</footer></blockquote>
+<figure>
+  <blockquote>
+    <p>多くの人が気づいていないと思うんだけど（それとも話そうとしないだけ？）、パフォーマンスの実現には現実的かつ具体的なコストがかかることがよくあって、メンテナンス性を食いつぶす結果にもなる。</p>
+  </blockquote>
+  <figcaption>&#x2015;&#x2015;ニールス・マティス<a href="#fn:matthijs" id="fnref:matthijs" title="See footnote" class="footnote">6</a></figcaption>
+</figure>
 
 <p>CSSフレームワーク方法論のもっとも深刻な問題のいくつかは、古いコードを見返したときや、新しいチーム・メンバーがプロジェクトに加わったときに露わになる。これはおもに「探しやすさ」をほとんど考慮していないことが原因だ。ニコラス・ギャラガーはフロントエンド・アーキテクチャーについての記事で「クラス名はディベロッパーに有益な情報を伝えるものであるべきだ」と言っているが、僕はこれをもう一歩推し進めたい。<em>セレクター</em>はディベロッパーに有益な情報を伝えるものであるべきだ。両者の目的は同じで、<em>そのルールがどこで使われているのか知りたい</em>というものだが、セレクターは<em>コンテキスト</em>を伝えるという点でずっと有益だ。もしセレクターが<em>決められた範囲内</em>の要素にだけ適用されるということがわかれば、そのルールの背後にある意図を理解するのはずっと簡単だ。次に挙げる、名簿のリンクをスタイリングする2つの方法について考えてみてほしい。</p>
 
@@ -177,18 +189,22 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
 
 <p>後者は、そのコードベースにはじめて触れたり、しばらく離れていたりして馴染みが薄かったとしても、難なく理解できるはずだ。そしてまた「探しやすい」という性質も持っている。新入りのデベロッパーの場合を考えてみよう。彼らからすると、そのCSSコードベースを丸ごと読んだり (あるいは覚えたり) しない限り、そこに一貫したルールがあるかどうか知りようがない。彼らに過度な期待をするのは現実的ではないだろう。彼らは十中八九、繰り返しを減らすという目標に完全に反して、同じ結果を得るために別の新しいルールを書こうとする。</p>
 
-<blockquote>
-  <p>エレガントなコードはただ正しいだけではなく、目に見えて、明らかに正しい。単にコンピューターのためのアルゴリズムというだけではなく、それを読む人間の心理に理解や確信を促してくれる。コードのエレガンスを探求することで、私たちはより良いコードが書けるようになる。明解なコードの書き方を学ぶことは、エレガントなコードの書き方を学ぶための大きな第一歩だ。そしてコードを探しやすくしようとすることは、それを明解にすることにつながる。エレガントなコードは明解で、そして探しやすくもある。<br>
-  </p><footer>— エリック・S・レイモンド<a href="#fn:raymond" id="fnref:raymond" title="See footnote" class="footnote">7</a>
-</footer></blockquote>
+<figure>
+  <blockquote>
+    <p>エレガントなコードはただ正しいだけではなく、目に見えて、明らかに正しい。単にコンピューターのためのアルゴリズムというだけではなく、それを読む人間の心理に理解や確信を促してくれる。コードのエレガンスを探求することで、私たちはより良いコードが書けるようになる。明解なコードの書き方を学ぶことは、エレガントなコードの書き方を学ぶための大きな第一歩だ。そしてコードを探しやすくしようとすることは、それを明解にすることにつながる。エレガントなコードは明解で、そして探しやすくもある。</p>
+  </blockquote>
+  <figcaption>&#x2015;&#x2015;エリック・S・レイモンド<a href="#fn:raymond" id="fnref:raymond" title="See footnote" class="footnote">7</a></figcaption>
+</figure>
 
 <p>探しやすさの問題と関連して、フレームワーク方法論はまた、ソフトウェアが肥大する要因にもなる。具体的なセレクターを書けば、そのセレクターがすでに不必要になっていないかどうかを判断する材料になる。先ほどの後者の例では、名簿のリストがウェブサイトから削除された場合、そのCSSブロックをまるごと消すことができる。一方でフレキシブルなクラス名ベースのセレクターはほかで使われている可能性があり、そのルールを削除しても安全かどうかすぐにはわからないので、クリーンアップに地道な努力を必要とする。</p>
 
 <p>パフォーマンスについて最後に、マット・ウィルコックスの完璧な説明を引用しよう。</p>
 
-<blockquote>
-  <p>パフォーマンスはブラウザー・レベルの問題で、HTML/CSSのオーサーが解決したり克服したりするものじゃない。妥当でよく考えられたHTMLとCSSを書いている限り、与えられたページのレンダリング速度を向上するだけのこんな馬鹿げたルールに手を出す必要はない。それにブラウザーはリリースごとに速度が向上している。パフォーマンスのためにコードを最適化しなきゃならないのはもっぱらJS野郎たちだ。もしHTML/CSSを最適化したいなら、それはベスト・プラクティスを目指してやるべきで、パフォーマンスのためにやるべきじゃない。パフォーマンスがいまいちだったとしてもブラウザーが新しくなれば勝手に良くなるが、その場しのぎでメンテナンスしづらい意味不明のコードはそうはいかない。<a href="#fn:wilcox" id="fnref:wilcox" title="See footnote" class="footnote">8</a>
-</p></blockquote>
+<figure>
+  <blockquote>
+    <p>パフォーマンスはブラウザー・レベルの問題で、HTML/CSSのオーサーが解決したり克服したりするものじゃない。妥当でよく考えられたHTMLとCSSを書いている限り、与えられたページのレンダリング速度を向上するだけのこんな馬鹿げたルールに手を出す必要はない。それにブラウザーはリリースごとに速度が向上している。パフォーマンスのためにコードを最適化しなきゃならないのはもっぱらJS野郎たちだ。もしHTML/CSSを最適化したいなら、それはベスト・プラクティスを目指してやるべきで、パフォーマンスのためにやるべきじゃない。パフォーマンスがいまいちだったとしてもブラウザーが新しくなれば勝手に良くなるが、その場しのぎでメンテナンスしづらい意味不明のコードはそうはいかない。<a href="#fn:wilcox" id="fnref:wilcox" title="See footnote" class="footnote">8</a></p>
+  </blockquote>
+</figure>
 
 <h2 id="so-what-can-we-do">で、僕らに何ができる?</h2>
 
@@ -220,10 +236,12 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
 
 <p>自分が作っているプロダクトの目的を自問してみれば、プロダクトのあらゆる面について、どう表現するかだけではなく、どう構造化するかについてより重視するようになるはずだ。ウェブはセマンティックなメディアである、ということを指針にしよう。</p>
 
-<blockquote>
-  <p>すべての有機物と無機物、すべての形而下のものと形而上のもの、すべての人間的なものと超人間的なもの、知恵と心と魂のすべての真の姿に、広く浸透する法則がある。生命はその表現により識別され、形態はつねに機能に従うという法則だ。<br>
-  </p><footer>— ルイス・サリヴァン<a href="#fn:sullivan" id="fnref:sullivan" title="See footnote" class="footnote">9</a>
-</footer></blockquote>
+<figure>
+  <blockquote>
+    <p>すべての有機物と無機物、すべての形而下のものと形而上のもの、すべての人間的なものと超人間的なもの、知恵と心と魂のすべての真の姿に、広く浸透する法則がある。生命はその表現により識別され、形態はつねに機能に従うという法則だ。</p>
+  </blockquote>
+  <figcaption>&#x2015;&#x2015;ルイス・サリヴァン<a href="#fn:sullivan" id="fnref:sullivan" title="See footnote" class="footnote">9</a></figcaption>
+</figure>
 
 <h2 id="thanks">謝辞</h2>
 
