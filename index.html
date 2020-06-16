@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>カーゴ・カルト CSS</title>
+<title>カーゴ・カルトCSS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Open+Sans:400,700">
 <link rel="stylesheet" href="./css/normalize.css">
 <link rel="stylesheet" href="./css/minimal.css">
@@ -13,56 +13,56 @@
 
 <div role="main">
 
-<h1>カーゴ・カルト CSS</h1>
+<h1>カーゴ・カルトCSS</h1>
 
 <b class="author">ベン・ダーロウ</b>
 
-<p>CSS を書いたり管理したりするにはなんらかの方法論があった方が良い、と広く考えられている。しかし実際に取り入れられている手法の中には、セマンティクス上の品質や、長期にわたるメンテナンス性に悪影響を与えるものもある。ここでは、CSS の「フレームワーク方法論」として提唱されているテクニックの問題点や、その問題を僕たちウェブ・ディベロッパーがどうすれば解決できるかについて論じてみようと思う。</p>
+<p>CSSを書いたり管理したりするにはなんらかの方法論があった方が良い、と広く考えられている。しかし実際に取り入れられている手法の中には、セマンティクス上の品質や、長期にわたるメンテナンス性に悪影響を与えるものもある。ここでは、CSSの「フレームワーク方法論」として提唱されているテクニックの問題点や、その問題を僕たちウェブ・ディベロッパーがどうすれば解決できるかについて論じてみようと思う。</p>
 
-<p>現在、CSS 開発におけるフレームワーク方法論として、<a href="http://bem.info/method/definitions/" title="Block, Element, Modifier — Definitions">BEM</a> など類似のテクニックがいくつかあるが、もっとも有名なのは <a href="https://github.com/stubbornella/oocss/wiki/faq" title="OOCSS FAQ">OOCSS</a> だろう。これらの方法論は CSS にオブジェクト指向プログラミングの原則を適用しようと試みる。しかしながら、両者の間にはそもそも<em>宣言型スタイル言語</em>と<em>オブジェクト指向ソフトウェア設計原則</em>というコンセプト上の不一致がある。その結果、経験の浅いディベロッパーが気づきにくいような複雑な問題を持ち込んでしまう。たいへん困ったことに、著名なブロガーたちが「ベスト・プラクティス」として喧伝しているおかげで、これらの方法論の採用が広く見られるようになってしまった。ごく一部の高いトラフィックを持つサイトを除いて、これら方法論によって得られるとされる利点を証明する根拠はない。このことからもわかるとおり、CSS のフレームワーク方法論は、人を惑わせ害を及ぼす<a href="http://neurotheory.columbia.edu/~ken/cargo_cult.html" title="“Cargo Cult Science” by Richard Feynman">カーゴ・カルト</a>の典型であると僕は考える。</p>
+<p>現在、CSS開発におけるフレームワーク方法論として、<a href="http://bem.info/method/definitions/" title="Block, Element, Modifier — Definitions">BEM</a>など類似のテクニックがいくつかあるが、もっとも有名なのは<a href="https://github.com/stubbornella/oocss/wiki/faq" title="OOCSS FAQ">OOCSS</a>だろう。これらの方法論はCSSにオブジェクト指向プログラミングの原則を適用しようと試みる。しかしながら、両者の間にはそもそも<em>宣言型スタイル言語</em>と<em>オブジェクト指向ソフトウェア設計原則</em>というコンセプト上の不一致がある。その結果、経験の浅いディベロッパーが気づきにくいような複雑な問題を持ち込んでしまう。たいへん困ったことに、著名なブロガーたちが「ベスト・プラクティス」として喧伝しているおかげで、これらの方法論の採用が広く見られるようになってしまった。ごく一部の高いトラフィックを持つサイトを除いて、これら方法論によって得られるとされる利点を証明する根拠はない。このことからもわかるとおり、CSSのフレームワーク方法論は、人を惑わせ害を及ぼす<a href="http://neurotheory.columbia.edu/~ken/cargo_cult.html" title="“Cargo Cult Science” by Richard Feynman">カーゴ・カルト</a>の典型であると僕は考える。</p>
 
 <h2 id="semantics">セマンティクス</h2>
 
 <blockquote>
-  <p>コンピューター・サイエンスで難しいことは 2 つしかない。キャッシュの無効化と、命名だ。 <br>
+  <p>コンピューター・サイエンスで難しいことは2つしかない。キャッシュの無効化と、命名だ。<br>
   </p><footer>— フィル・カールトン<a href="#fn:karlton" id="fnref:karlton" title="See footnote" class="footnote">1</a>
 </footer></blockquote>
 
 <p>ウェブは基本的に<em>セマンティックなメディア</em>だ。様々な言語、文化、性、世代、肉体的および認知的能力を持った人々が、あらゆる種類の技術を通じて利用できることを目指すプラットフォームとして、この点はきわめて重要だ。ウェブがどうあるべきか、またはどう見えるべきかを示す唯一のビジョンはない。明らかに限られた領域で開発しているのでない限り、セマンティックなアプローチこそがウェブ・ディベロッパーのあらゆる行動の中心であるべきだ。</p>
 
-<p>HTML を書くとき、ウェブサイトやアプリケーションのインターフェースやコンテンツのセマンティクスを表現するにはおもに 3 つの方法がある。コンテンツをマークアップする<em>要素タイプ</em>、<em>ほかとは異なる個別の要素</em>を特定する <em>ID</em>、そして要素がどの<em>集合</em>に属すかカテゴライズする<em>クラス名</em>だ。</p>
+<p>HTMLを書くとき、ウェブサイトやアプリケーションのインターフェースやコンテンツのセマンティクスを表現するにはおもに3つの方法がある。コンテンツをマークアップする<em>要素タイプ</em>、<em>ほかとは異なる個別の要素</em>を特定する<em>ID</em>、そして要素がどの<em>集合</em>に属すかカテゴライズする<em>クラス名</em>だ。</p>
 
-<p>この 3 つの中で、HTML ドキュメントにプレゼンテーションを結びつけるにはクラス名がもっとも一般的に使われている。クラス名について論じるにあたって、W3C の最新の HTML5 勧告候補が次のように記している点に注意してほしい。</p>
+<p>この3つの中で、HTMLドキュメントにプレゼンテーションを結びつけるにはクラス名がもっとも一般的に使われている。クラス名について論じるにあたって、W3Cの最新のHTML5勧告候補が次のように記している点に注意してほしい。</p>
 
 <blockquote>
-  <p><code>class</code> 属性で用いることのできるトークンにとくに制限はないが、その内容にどのような体裁を持たせたいかではなく、その内容の性質を表現する値が推奨される。<a href="#fn:html5-dom" id="fnref:html5-dom" title="See footnote" class="footnote">2</a>
+  <p><code>class</code>属性で用いることのできるトークンにとくに制限はないが、その内容にどのような体裁を持たせたいかではなく、その内容の性質を表現する値が推奨される。<a href="#fn:html5-dom" id="fnref:html5-dom" title="See footnote" class="footnote">2</a>
 </p></blockquote>
 
-<p><code>class</code> 属性の仕様のどこを見ても、この属性の果たす<em>目的</em>として、コンテンツのセマンティクスを表現するということ<em>以外</em>は書いていない。にもかかわらず、じつに多くのウェブ・ディベロッパーが <code>class</code> 属性について「CSS クラス」などといった間違った呼び方をしている。タンテク・チェリクはこう書いている。</p>
+<p><code>class</code>属性の仕様のどこを見ても、この属性の果たす<em>目的</em>として、コンテンツのセマンティクスを表現するということ<em>以外</em>は書いていない。にもかかわらず、じつに多くのウェブ・ディベロッパーが<code>class</code>属性について「CSSクラス」などといった間違った呼び方をしている。タンテク・チェリクはこう書いている。</p>
 
 <blockquote>
-  <p>「CSS クラス」や「CSS クラス名」といった言い回しを使うということは、その言い回しが不正確である (あるいはただ単に間違っている) というだけではない。それは「CSS」のプレゼンテーショナルな文脈と概念をクラス名と結びつけ、プレゼンテーショナルなクラス名を使うというバッド・プラクティスをほのめかしたり、あまつさえ奨励したりすることになる。<a href="#fn:celik" id="fnref:celik" title="See footnote" class="footnote">3</a>
+  <p>「CSSクラス」や「CSSクラス名」といった言い回しを使うということは、その言い回しが不正確である (あるいはただ単に間違っている) というだけではない。それは「CSS」のプレゼンテーショナルな文脈と概念をクラス名と結びつけ、プレゼンテーショナルなクラス名を使うというバッド・プラクティスをほのめかしたり、あまつさえ奨励したりすることになる。<a href="#fn:celik" id="fnref:celik" title="See footnote" class="footnote">3</a>
 </p></blockquote>
 
 <p>フレームワーク方法論は勧告と完全に食い違っているが、彼らは勧告を軽視する道を選んだ。その手のプロジェクトでのクラス名はプレゼンテーションを表現している<em>必要があり</em>、非セマンティックにならざるを得ない。<a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/" title="About HTML semantics and front-end architecture">そうではないと主張しているにもかかわらず</a>。それにしてもなぜ、セマンティックなクラス名がそこまで重要なのか? もっとも基本的なレベルで言うと、ティム・バーナーズ＝リーが「<a href="http://www.scientificamerican.com/article.cfm?id=long-live-the-web" title="Long Live the Web: A Call for Continued Open Standards and Neutrality">ウェブの普遍性</a>」と表現したところの、プラットフォームに依存しない、包括的デザイン原則の維持が目的だ。また、いま僕たちが作っているものが、将来どんな技術によって利用されることになるかは予測できないからでもある。</p>
 
 <blockquote>
-  <p>HTML がセマンティックかどうか簡単にテストするには、その HTML がパブリック API として利用できるかどうかを考えてみるといい。 <br>
+  <p>HTMLがセマンティックかどうか簡単にテストするには、そのHTMLがパブリックAPIとして利用できるかどうかを考えてみるといい。<br>
   </p><footer>— アレックス・ゲイナー<a href="#fn:gaynor" id="fnref:gaynor" title="See footnote" class="footnote">4</a>
 </footer></blockquote>
 
-<p>この件についての例として <a href="http://microformats.org/about" title="About Microformats">Microformats</a> が挙げられる。Microformats が生まれたのは、ドキュメントの製作者が住所やカレンダーといったよくある仕組みを表現するのに<em>セマンティックなクラス名</em>を使ってきたからにほかならない。このようにデータを表現する上での慣例を体系化できれば、マークアップはウェブサイトの利用者だけではなく、それをまったく新しいやり方で利用するソフトウェアにとっても有益なものになる。Microformats がセマンティックなクラス名は有用だと証明しているのに、それが否定されるのを見ると残念な気持ちになる。</p>
+<p>この件についての例として<a href="http://microformats.org/about" title="About Microformats">Microformats</a>が挙げられる。Microformatsが生まれたのは、ドキュメントの製作者が住所やカレンダーといったよくある仕組みを表現するのに<em>セマンティックなクラス名</em>を使ってきたからにほかならない。このようにデータを表現する上での慣例を体系化できれば、マークアップはウェブサイトの利用者だけではなく、それをまったく新しいやり方で利用するソフトウェアにとっても有益なものになる。Microformatsがセマンティックなクラス名は有用だと証明しているのに、それが否定されるのを見ると残念な気持ちになる。</p>
 
 <blockquote>
-  <p>クラス名は、機械にも人間にも、セマンティックな情報を伝えることはほとんどない。それが Microformats という、合意を得た (かつマシーン・リーダブルな) 名前の小さな集まりでもない限り。 <br>
+  <p>クラス名は、機械にも人間にも、セマンティックな情報を伝えることはほとんどない。それがMicroformatsという、合意を得た (かつマシーン・リーダブルな) 名前の小さな集まりでもない限り。<br>
   </p><footer>— ニコラス・ギャラガー<a href="#fn:gallagher" id="fnref:gallagher" title="See footnote" class="footnote">5</a>
 </footer></blockquote>
 
-<p>これは恣意的な表現だ。今日作られ、発表されているコンテンツの、将来にわたる利用のすべての可能性に対して、「合意を得た名前の集まり」とは。この表現は CSS フレームワークのイデオロギーを正当化したいがためのものだ。非セマンティックなクラス名を許すと、ドキュメントの構造とコンテンツがプレゼンテーションの影響を受けるようになってしまう。それは明らかに<a href="http://en.wikipedia.org/wiki/Law_of_Demeter" title="Law of Demeter">関心の分離</a>に反する。</p>
+<p>これは恣意的な表現だ。今日作られ、発表されているコンテンツの、将来にわたる利用のすべての可能性に対して、「合意を得た名前の集まり」とは。この表現はCSSフレームワークのイデオロギーを正当化したいがためのものだ。非セマンティックなクラス名を許すと、ドキュメントの構造とコンテンツがプレゼンテーションの影響を受けるようになってしまう。それは明らかに<a href="http://en.wikipedia.org/wiki/Law_of_Demeter" title="Law of Demeter">関心の分離</a>に反する。</p>
 
 <h2 id="maintainability">メンテナンス性</h2>
 
-<p>ウェブサイトを作るとき、僕たちはつねに、そのサイトがいつまでも簡単にメンテナンスや変更ができるよう、充分に将来を見すえて考えなければならない。今日のウェブサイトやアプリケーションは、ますます大きなフロントエンド開発チームを必要とするようになってきている。そういった環境では、CSS を書くための方法論がチーム全体にうまく取り入れられることがとても重要だ。チームの何人かはプロダクトの一生のうち一時期しか関わらないだろうし、何人かはプロダクトの初期には参加していなかっただろう。そこではまた、CSS の実装に関して多くの難題が持ち上がる。たとえば…</p>
+<p>ウェブサイトを作るとき、僕たちはつねに、そのサイトがいつまでも簡単にメンテナンスや変更ができるよう、充分に将来を見すえて考えなければならない。今日のウェブサイトやアプリケーションは、ますます大きなフロントエンド開発チームを必要とするようになってきている。そういった環境では、CSSを書くための方法論がチーム全体にうまく取り入れられることがとても重要だ。チームの何人かはプロダクトの一生のうち一時期しか関わらないだろうし、何人かはプロダクトの初期には参加していなかっただろう。そこではまた、CSSの実装に関して多くの難題が持ち上がる。たとえば…</p>
 
 <ul>
 <li>コードの繰り返し・重複</li>
@@ -70,7 +70,7 @@
 <li>パフォーマンス</li>
 </ul>
 
-<p>CSS フレームワーク方法論の背後にあるもっとも重要な目的は、このうち最初の、サイト中の CSS コードの重複の問題を解決することだろう。クラス名による短いセレクターは、実用的で、あらゆる要素間でルールを共有できる。次の例を見てほしい。このクラスはどんな要素にも同じボーダー、パディング、タイポグラフィを適用する。</p>
+<p>CSSフレームワーク方法論の背後にあるもっとも重要な目的は、このうち最初の、サイト中のCSSコードの重複の問題を解決することだろう。クラス名による短いセレクターは、実用的で、あらゆる要素間でルールを共有できる。次の例を見てほしい。このクラスはどんな要素にも同じボーダー、パディング、タイポグラフィを適用する。</p>
 
 <pre class="prettyprint prettyprinted" style=""><code class="language-css"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">standard </span><span class="pun">{</span><span class="pln">
     color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln">
@@ -97,7 +97,7 @@
 
 <p>やりたかったのはコードの重複を減らすことだったはずだが、この方法でクラスを実装すると、マークアップはこの<em>両方</em>のクラスの存在に永遠に縛られることになる。どちらのクラスも特定のセマンティクスを伝えていないにもかかわらず。</p>
 
-<p>こんなときこそ求められるのが、<a href="http://lesscss.org" title="LESS « The Dynamic Stylesheet language">LESS</a> や <a href="http://sass-lang.com" title="Sass - Syntactically Awesome Stylesheets">Sass</a> などの CSS プリプロセッサーにある<em>ミックスイン</em>や<em>継承</em>の組み合わせだ。必要なプロパティは<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins" title="Sass Documentation — Mixin Directives">ミックスイン</a>や<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#placeholders" title="Sass Documentation — @extend-only Selectors">プレースホルダー</a>でひとまとめにできるし、もろにプレゼンテーショナルな名前をつけても (デバッグのためにあえてそうしない限り) 生成されるコードには現れないし、そのルールはどんなセレクターにも使い回せる。以下は <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html" title="SASS Reference">SCSS 構文</a>でのミックスインの簡単な例。</p>
+<p>こんなときこそ求められるのが、<a href="http://lesscss.org" title="LESS « The Dynamic Stylesheet language">LESS</a>や<a href="http://sass-lang.com" title="Sass - Syntactically Awesome Stylesheets">Sass</a>などのCSSプリプロセッサーにある<em>ミックスイン</em>や<em>継承</em>の組み合わせだ。必要なプロパティは<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins" title="Sass Documentation — Mixin Directives">ミックスイン</a>や<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#placeholders" title="Sass Documentation — @extend-only Selectors">プレースホルダー</a>でひとまとめにできるし、もろにプレゼンテーショナルな名前をつけても (デバッグのためにあえてそうしない限り) 生成されるコードには現れないし、そのルールはどんなセレクターにも使い回せる。以下は<a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html" title="SASS Reference">SCSS構文</a>でのミックスインの簡単な例。</p>
 
 <pre class="prettyprint prettyprinted" style=""><code class="language-scss"><span class="lit">@mixin</span><span class="pln"> news</span><span class="pun">-</span><span class="pln">item</span><span class="pun">(</span><span class="pln">$color</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
     border</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pln"> solid $color</span><span class="pun">;</span><span class="pln">
@@ -126,42 +126,42 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
     Here is a breaking news item!
 </span><span class="tag">&lt;/div&gt;</span></code></pre>
 
-<p>ミックスインのスタイル宣言に変更を加えるとつねに <code>div.breaking</code> セレクターも連動する。マークアップとはこれ以上ないくらい疎結合の状態だ。こういったミックスインをネイティブな CSS で定義できないのはとても残念だが (ありがたいことにようやく<a href="http://lists.w3.org/Archives/Public/www-style/2011Mar/0478.html" title="W3C www-style mailing list: CSS Mixins proposal by Tab Atkins Jr.">正式に検討されはじめた</a>)、プロとして CSS を書くなら CSS プリプロセッサーを使わない理由はどこにもない。</p>
+<p>ミックスインのスタイル宣言に変更を加えるとつねに<code>div.breaking</code>セレクターも連動する。マークアップとはこれ以上ないくらい疎結合の状態だ。こういったミックスインをネイティブなCSSで定義できないのはとても残念だが (ありがたいことにようやく<a href="http://lists.w3.org/Archives/Public/www-style/2011Mar/0478.html" title="W3C www-style mailing list: CSS Mixins proposal by Tab Atkins Jr.">正式に検討されはじめた</a>)、プロとしてCSSを書くならCSSプリプロセッサーを使わない理由はどこにもない。</p>
 
-<p>疎結合や<em><a href="http://ja.wikipedia.org/wiki/%E9%96%A2%E5%BF%83%E3%81%AE%E5%88%86%E9%9B%A2" title="関心の分離">関心の分離</a></em>といったものは、プロジェクトの将来にわたるメンテナンスにおいて極めて重要だ。マークアップと CSS を密結合にしすぎると修正のコストが増大してしまう。CSS がまだ生まれて間もない頃には、Dreamweaver や Frontpage といった WYSIWYG エディターの増殖が多くのウェブサイトを次のようなコードへと導いたものだった。</p>
+<p>疎結合や<em><a href="http://ja.wikipedia.org/wiki/%E9%96%A2%E5%BF%83%E3%81%AE%E5%88%86%E9%9B%A2" title="関心の分離">関心の分離</a></em>といったものは、プロジェクトの将来にわたるメンテナンスにおいて極めて重要だ。マークアップとCSSを密結合にしすぎると修正のコストが増大してしまう。CSSがまだ生まれて間もない頃には、DreamweaverやFrontpageといったWYSIWYGエディターの増殖が多くのウェブサイトを次のようなコードへと導いたものだった。</p>
 
 <pre class="prettyprint prettyprinted" style=""><code class="language-html"><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11px</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pun">;</span><span class="pln"> padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Here’s a box.</span><span class="tag">&lt;/span&gt;</span><span class="pln">
 </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11px</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pun">;</span><span class="pln"> padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Here’s another box.</span><span class="tag">&lt;/span&gt;</span><span class="pln">
 </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">,</span><span class="pln"> sans</span><span class="pun">-</span><span class="pln">serif</span><span class="pun">;</span><span class="pln"> font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">11px</span><span class="pun">;</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> solid</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> blue</span><span class="pun">;</span><span class="pln"> border</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2px</span><span class="pun">;</span><span class="pln"> padding</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Here’s yet another box. Noticing a trend yet…?</span><span class="tag">&lt;/span&gt;</span></code></pre>
 
-<p>こういったインラインのスタイルに基づいたマークアップは、90 年代後半にウェブをおとしめていたグチャグチャのタグの山に比べれば多少はまし、というものでしかない。デザインが変更されるたび、これらすべてのインライン・スタイルを追跡して書き換える必要がある。僕らはこの手の地獄のような開発からは逃げ出したが、しかし悲しいことに、これまでの教訓も忘れ去られてしまったらしく、いまだに次のようなコードに遭遇することがある。</p>
+<p>こういったインラインのスタイルに基づいたマークアップは、90年代後半にウェブをおとしめていたグチャグチャのタグの山に比べれば多少はまし、というものでしかない。デザインが変更されるたび、これらすべてのインライン・スタイルを追跡して書き換える必要がある。僕らはこの手の地獄のような開発からは逃げ出したが、しかし悲しいことに、これまでの教訓も忘れ去られてしまったらしく、いまだに次のようなコードに遭遇することがある。</p>
 
 <pre class="prettyprint prettyprinted" style=""><code class="language-html"><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"display-block blue-box font-arial color-blue solid-blue-border padding-20"</span><span class="tag">&gt;</span><span class="pln">Party like it’s 1999!</span><span class="tag">&lt;/span&gt;</span><span class="pln">
 </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"display-block blue-box font-arial color-blue solid-blue-border padding-20"</span><span class="tag">&gt;</span><span class="pln">Hey, have you checked K10K.net lately?</span><span class="tag">&lt;/span&gt;</span><span class="pln">
 </span><span class="tag">&lt;span</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"display-block blue-box font-arial color-blue solid-blue-border padding-20"</span><span class="tag">&gt;</span><span class="pln">Wassuuuuuuup!</span><span class="tag">&lt;/span&gt;</span></code></pre>
 
-<p>極端な例に見えるかもしれないが、これは CSS フレームワーク方法論が「モジュラー化」を追い求めてセマンティックなクラス名とセレクターを捨てた当然の帰結だ。CSS 内でのコードの重複を避ける一方、その重複はただ単にマークアップに転移し、その過程で密結合という副作用を招いている。</p>
+<p>極端な例に見えるかもしれないが、これはCSSフレームワーク方法論が「モジュラー化」を追い求めてセマンティックなクラス名とセレクターを捨てた当然の帰結だ。CSS内でのコードの重複を避ける一方、その重複はただ単にマークアップに転移し、その過程で密結合という副作用を招いている。</p>
 
-<p>また CSS フレームワーク方法論の別の目標として、高いパフォーマンスの実現というものもある。パフォーマンスは多くの要因に依存するものだ。ウェブページを利用しているクライアントの種類や、接続速度、コンテンツのキャッシュなど。基本的に、CSS のパフォーマンスに明らかに影響するのは次の 3 つだ。</p>
+<p>またCSSフレームワーク方法論の別の目標として、高いパフォーマンスの実現というものもある。パフォーマンスは多くの要因に依存するものだ。ウェブページを利用しているクライアントの種類や、接続速度、コンテンツのキャッシュなど。基本的に、CSSのパフォーマンスに明らかに影響するのは次の3つだ。</p>
 
 <ul>
-<li>HTTP リクエストの数</li>
+<li>HTTPリクエストの数</li>
 <li>キャッシュの状態</li>
 <li>ドキュメントのサイズ</li>
 </ul>
 
-<p>このうち最初の 2 つは CSS フレームワーク方法論の範囲ではないが、3 つめにはクラス名の再利用というかたちで取り組んでいる。その意図は、スタイルのプロパティの宣言を可能な限り少なくすれば、CSS はおのずと小さくなるだろう、というものだ。</p>
+<p>このうち最初の2つはCSSフレームワーク方法論の範囲ではないが、3つめにはクラス名の再利用というかたちで取り組んでいる。その意図は、スタイルのプロパティの宣言を可能な限り少なくすれば、CSSはおのずと小さくなるだろう、というものだ。</p>
 
-<p>しかしながら、そういった CSS の配信は誤った方向に向かう恐れがある。セレクターを短く、ルールを少なくし、多くの束縛を (たくさんの長いクラス名とともに) マークアップに持ち込んでも、転送されるデータ量は必ずしも小さくならない。この方法は多くのものを CSS ファイルから HTML ドキュメントに運び出すが、CSS はたいてい CDN による積極的なキャッシュと配信がおこなわれるのに対し、HTML はまったくキャッシュされないかもしれないのだ。</p>
+<p>しかしながら、そういったCSSの配信は誤った方向に向かう恐れがある。セレクターを短く、ルールを少なくし、多くの束縛を (たくさんの長いクラス名とともに) マークアップに持ち込んでも、転送されるデータ量は必ずしも小さくならない。この方法は多くのものをCSSファイルからHTMLドキュメントに運び出すが、CSSはたいていCDNによる積極的なキャッシュと配信がおこなわれるのに対し、HTMLはまったくキャッシュされないかもしれないのだ。</p>
 
-<p>CSS セレクターを短く保つことはパフォーマンス上の利点があると、CSS フレームワーク方法論の支持者はしばしば引き合いに出す。しかしこのことは<a href="http://calendar.perfplanet.com/2011/css-selector-performance-has-changed-for-the-better/" title="CSS Selector Performance has changed! (For the better)">すでに反証されており</a>、モダンなブラウザー・エンジンはごくまれな場合を除いて充分に手際が良く、セレクターを書き換えることによるスピードの向上は取るに足りない程度のものだ。一方で、フロントエンドのパフォーマンスには追求する価値があるのは間違いない。</p>
+<p>CSSセレクターを短く保つことはパフォーマンス上の利点があると、CSSフレームワーク方法論の支持者はしばしば引き合いに出す。しかしこのことは<a href="http://calendar.perfplanet.com/2011/css-selector-performance-has-changed-for-the-better/" title="CSS Selector Performance has changed! (For the better)">すでに反証されており</a>、モダンなブラウザー・エンジンはごくまれな場合を除いて充分に手際が良く、セレクターを書き換えることによるスピードの向上は取るに足りない程度のものだ。一方で、フロントエンドのパフォーマンスには追求する価値があるのは間違いない。</p>
 
 <blockquote>
-  <p>多くの人が気づいていないと思うんだけど (それとも話そうとしないだけ?)、パフォーマンスの実現には現実的かつ具体的なコストがかかることがよくあって、メンテナンス性を食いつぶす結果にもなる。 <br>
+  <p>多くの人が気づいていないと思うんだけど (それとも話そうとしないだけ?)、パフォーマンスの実現には現実的かつ具体的なコストがかかることがよくあって、メンテナンス性を食いつぶす結果にもなる。<br>
   </p><footer>— ニールス・マティス<a href="#fn:matthijs" id="fnref:matthijs" title="See footnote" class="footnote">6</a>
 </footer></blockquote>
 
-<p>CSS フレームワーク方法論のもっとも深刻な問題のいくつかは、古いコードを見返したときや、新しいチーム・メンバーがプロジェクトに加わったときに露わになる。これはおもに「探しやすさ」をほとんど考慮していないことが原因だ。ニコラス・ギャラガーはフロントエンド・アーキテクチャーについての記事で「クラス名はディベロッパーに有益な情報を伝えるものであるべきだ」と言っているが、僕はこれをもう一歩推し進めたい。<em>セレクター</em>はディベロッパーに有益な情報を伝えるものであるべきだ。両者の目的は同じで、<em>そのルールがどこで使われているのか知りたい</em>というものだが、セレクターは<em>コンテキスト</em>を伝えるという点でずっと有益だ。もしセレクターが<em>決められた範囲内</em>の要素にだけ適用されるということがわかれば、そのルールの背後にある意図を理解するのはずっと簡単だ。次に挙げる、名簿のリンクをスタイリングする 2 つの方法について考えてみてほしい。</p>
+<p>CSSフレームワーク方法論のもっとも深刻な問題のいくつかは、古いコードを見返したときや、新しいチーム・メンバーがプロジェクトに加わったときに露わになる。これはおもに「探しやすさ」をほとんど考慮していないことが原因だ。ニコラス・ギャラガーはフロントエンド・アーキテクチャーについての記事で「クラス名はディベロッパーに有益な情報を伝えるものであるべきだ」と言っているが、僕はこれをもう一歩推し進めたい。<em>セレクター</em>はディベロッパーに有益な情報を伝えるものであるべきだ。両者の目的は同じで、<em>そのルールがどこで使われているのか知りたい</em>というものだが、セレクターは<em>コンテキスト</em>を伝えるという点でずっと有益だ。もしセレクターが<em>決められた範囲内</em>の要素にだけ適用されるということがわかれば、そのルールの背後にある意図を理解するのはずっと簡単だ。次に挙げる、名簿のリンクをスタイリングする2つの方法について考えてみてほしい。</p>
 
 <pre class="prettyprint prettyprinted" style=""><code class="language-css"><span class="pun">.</span><span class="pln">list</span><span class="pun">-</span><span class="pln">link </span><span class="pun">{</span><span class="pln">
     font</span><span class="pun">-</span><span class="pln">weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span><span class="pln">
@@ -175,59 +175,59 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
     text</span><span class="pun">-</span><span class="pln">decoration</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="pln">
 </span><span class="pun">}</span></code></pre>
 
-<p>後者は、そのコードベースにはじめて触れたり、しばらく離れていたりして馴染みが薄かったとしても、難なく理解できるはずだ。そしてまた「探しやすい」という性質も持っている。新入りのデベロッパーの場合を考えてみよう。彼らからすると、その CSS コードベースを丸ごと読んだり (あるいは覚えたり) しない限り、そこに一貫したルールがあるかどうか知りようがない。彼らに過度な期待をするのは現実的ではないだろう。彼らは十中八九、繰り返しを減らすという目標に完全に反して、同じ結果を得るために別の新しいルールを書こうとする。</p>
+<p>後者は、そのコードベースにはじめて触れたり、しばらく離れていたりして馴染みが薄かったとしても、難なく理解できるはずだ。そしてまた「探しやすい」という性質も持っている。新入りのデベロッパーの場合を考えてみよう。彼らからすると、そのCSSコードベースを丸ごと読んだり (あるいは覚えたり) しない限り、そこに一貫したルールがあるかどうか知りようがない。彼らに過度な期待をするのは現実的ではないだろう。彼らは十中八九、繰り返しを減らすという目標に完全に反して、同じ結果を得るために別の新しいルールを書こうとする。</p>
 
 <blockquote>
-  <p>エレガントなコードはただ正しいだけではなく、目に見えて、明らかに正しい。単にコンピューターのためのアルゴリズムというだけではなく、それを読む人間の心理に理解や確信を促してくれる。コードのエレガンスを探求することで、私たちはより良いコードが書けるようになる。明解なコードの書き方を学ぶことは、エレガントなコードの書き方を学ぶための大きな第一歩だ。そしてコードを探しやすくしようとすることは、それを明解にすることにつながる。エレガントなコードは明解で、そして探しやすくもある。 <br>
+  <p>エレガントなコードはただ正しいだけではなく、目に見えて、明らかに正しい。単にコンピューターのためのアルゴリズムというだけではなく、それを読む人間の心理に理解や確信を促してくれる。コードのエレガンスを探求することで、私たちはより良いコードが書けるようになる。明解なコードの書き方を学ぶことは、エレガントなコードの書き方を学ぶための大きな第一歩だ。そしてコードを探しやすくしようとすることは、それを明解にすることにつながる。エレガントなコードは明解で、そして探しやすくもある。<br>
   </p><footer>— エリック・S・レイモンド<a href="#fn:raymond" id="fnref:raymond" title="See footnote" class="footnote">7</a>
 </footer></blockquote>
 
-<p>探しやすさの問題と関連して、フレームワーク方法論はまた、ソフトウェアが肥大する要因にもなる。具体的なセレクターを書けば、そのセレクターがすでに不必要になっていないかどうかを判断する材料になる。先ほどの後者の例では、名簿のリストがウェブサイトから削除された場合、その CSS ブロックをまるごと消すことができる。一方でフレキシブルなクラス名ベースのセレクターはほかで使われている可能性があり、そのルールを削除しても安全かどうかすぐにはわからないので、クリーンアップに地道な努力を必要とする。</p>
+<p>探しやすさの問題と関連して、フレームワーク方法論はまた、ソフトウェアが肥大する要因にもなる。具体的なセレクターを書けば、そのセレクターがすでに不必要になっていないかどうかを判断する材料になる。先ほどの後者の例では、名簿のリストがウェブサイトから削除された場合、そのCSSブロックをまるごと消すことができる。一方でフレキシブルなクラス名ベースのセレクターはほかで使われている可能性があり、そのルールを削除しても安全かどうかすぐにはわからないので、クリーンアップに地道な努力を必要とする。</p>
 
 <p>パフォーマンスについて最後に、マット・ウィルコックスの完璧な説明を引用しよう。</p>
 
 <blockquote>
-  <p>パフォーマンスはブラウザー・レベルの問題で、HTML/CSS のオーサーが解決したり克服したりするものじゃない。妥当でよく考えられた HTML と CSS を書いている限り、与えられたページのレンダリング速度を向上するだけのこんな馬鹿げたルールに手を出す必要はない。それにブラウザーはリリースごとに速度が向上している。パフォーマンスのためにコードを最適化しなきゃならないのはもっぱら JS 野郎たちだ。もし HTML/CSS を最適化したいなら、それはベスト・プラクティスを目指してやるべきで、パフォーマンスのためにやるべきじゃない。パフォーマンスがいまいちだったとしてもブラウザーが新しくなれば勝手に良くなるが、その場しのぎでメンテナンスしづらい意味不明のコードはそうはいかない。<a href="#fn:wilcox" id="fnref:wilcox" title="See footnote" class="footnote">8</a>
+  <p>パフォーマンスはブラウザー・レベルの問題で、HTML/CSSのオーサーが解決したり克服したりするものじゃない。妥当でよく考えられたHTMLとCSSを書いている限り、与えられたページのレンダリング速度を向上するだけのこんな馬鹿げたルールに手を出す必要はない。それにブラウザーはリリースごとに速度が向上している。パフォーマンスのためにコードを最適化しなきゃならないのはもっぱらJS野郎たちだ。もしHTML/CSSを最適化したいなら、それはベスト・プラクティスを目指してやるべきで、パフォーマンスのためにやるべきじゃない。パフォーマンスがいまいちだったとしてもブラウザーが新しくなれば勝手に良くなるが、その場しのぎでメンテナンスしづらい意味不明のコードはそうはいかない。<a href="#fn:wilcox" id="fnref:wilcox" title="See footnote" class="footnote">8</a>
 </p></blockquote>
 
 <h2 id="so-what-can-we-do">で、僕らに何ができる?</h2>
 
-<p>フロントエンド・ディベロッパーたちは何年もの間、CSS フレームワーク方法論<em>なし</em>で、大きなウェブ・プロジェクトをおとなしく、そして上手いこと進めてきた。OOCSS や BEM といったものを使わずともこういったプロジェクトがなんとかなったという事実は、ほかに効果的な方法があるという証拠だ。ここでは、僕と一緒に CSS について議論してきた人たちからの助言を、僕が経験から得たいくつかの提案とともにいくつか紹介したい。</p>
+<p>フロントエンド・ディベロッパーたちは何年もの間、CSSフレームワーク方法論<em>なし</em>で、大きなウェブ・プロジェクトをおとなしく、そして上手いこと進めてきた。OOCSSやBEMといったものを使わずともこういったプロジェクトがなんとかなったという事実は、ほかに効果的な方法があるという証拠だ。ここでは、僕と一緒にCSSについて議論してきた人たちからの助言を、僕が経験から得たいくつかの提案とともにいくつか紹介したい。</p>
 
-<h3 id="use-ids-for-the-love-of-god">「ID を使ってくれ、頼むから」</h3>
+<h3 id="use-ids-for-the-love-of-god">「IDを使ってくれ、頼むから」</h3>
 
-<p>CSS フレームワーク方法論者の中には、<a href="http://csslint.net/about.html" title="About CSSLint">ID を使うのは良くない</a>と言う人たちがいる。ID は特定度 (specificity) が高いので、(いまいましい) <code>!important</code> なしではルールを上書きできなくなってしまう恐れがある、というのがその理由だ。僕はこの意見に強く反対する。<a href="http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/" title="Truth, Equality and JavaScript">アンガス・クロールはこう書いている</a>—「厄介ごとを避けようという方針は困ったものだ。なぜなら、言語をマスターするにはその言語のすべてを知らなければならないし、恐れたり逃げたりすることは知識を得ることの妨げになるのだから」。もし君がプロのウェブ・ディベロッパーなら、特定度がどのような仕組みで、そしてそれが君の書くセレクターにどのように影響するのかを理解すべきだ。さらに、ID はドキュメントの構造上妥当だし、<a href="http://www.webdirections.org/blog/in-defense-of-the-humble-id-attribute/" title="In defense of the humble id attribute">とても有益な機能とセマンティックな目的がある</a>。</p>
+<p>CSSフレームワーク方法論者の中には、<a href="http://csslint.net/about.html" title="About CSSLint">IDを使うのは良くない</a>と言う人たちがいる。IDは特定度 (specificity) が高いので、(いまいましい) <code>!important</code>なしではルールを上書きできなくなってしまう恐れがある、というのがその理由だ。僕はこの意見に強く反対する。<a href="http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/" title="Truth, Equality and JavaScript">アンガス・クロールはこう書いている</a>—「厄介ごとを避けようという方針は困ったものだ。なぜなら、言語をマスターするにはその言語のすべてを知らなければならないし、恐れたり逃げたりすることは知識を得ることの妨げになるのだから」。もし君がプロのウェブ・ディベロッパーなら、特定度がどのような仕組みで、そしてそれが君の書くセレクターにどのように影響するのかを理解すべきだ。さらに、IDはドキュメントの構造上妥当だし、<a href="http://www.webdirections.org/blog/in-defense-of-the-humble-id-attribute/" title="In defense of the humble id attribute">とても有益な機能とセマンティックな目的がある</a>。</p>
 
 <h3 id="write-selectors-that-are-as-specific-and-descriptive-as-they-need-to-be">「セレクターは必要に応じて具体的かつ説明的に。それ以上でも以下でもなく」</h3>
 
-<p>もしその CSS が色んなところに出現する可能性のある要素をターゲットにしているなら、そのようなセレクターを使おう。もしその CSS がごく限られた場合にしか使われないなら、そのようなセレクターを使おう。なにより、誰かが半年後に見たときにどんな目的なのかわからないような、いい加減なセレクターにしちゃいけない。</p>
+<p>もしそのCSSが色んなところに出現する可能性のある要素をターゲットにしているなら、そのようなセレクターを使おう。もしそのCSSがごく限られた場合にしか使われないなら、そのようなセレクターを使おう。なにより、誰かが半年後に見たときにどんな目的なのかわからないような、いい加減なセレクターにしちゃいけない。</p>
 
 <h3 id="itll-never-be-a-reusable-module">「再利用可能なモジュールなどない (実際に再利用されるまでは)。リファクターやリライトはあとまわし」</h3>
 
-<p>特定度の高い CSS を書くことに不安を覚えたとしたら、それはつまり時期尚早な最適化をしようとしているということだ。まず役目を果たすのに充分な CSS を書き、そしてそれが再利用されることが明らかになったときにはじめて適切なミックスインとしてリファクタリングしよう。来週には優先事項が変わり、その機能をまるごと捨てることになるかもしれないって? でも、半年後に誰かが見たときに目的が理解できず、消しても大丈夫かわからないような、余分なクラス名のセレクターの山なんて誰もほしくないはずだ。</p>
+<p>特定度の高いCSSを書くことに不安を覚えたとしたら、それはつまり時期尚早な最適化をしようとしているということだ。まず役目を果たすのに充分なCSSを書き、そしてそれが再利用されることが明らかになったときにはじめて適切なミックスインとしてリファクタリングしよう。来週には優先事項が変わり、その機能をまるごと捨てることになるかもしれないって? でも、半年後に誰かが見たときに目的が理解できず、消しても大丈夫かわからないような、余分なクラス名のセレクターの山なんて誰もほしくないはずだ。</p>
 
 <h3 id="many-files-and-a-build-process">「たくさんのファイルもひとつのビルド・プロセスで」</h3>
 
-<p>君はプロのウェブ・ディベロッパーだ。コードを書くのにもうメモ帳を使ってはいないだろうし、作業にもっとも適したツールを使うこと。CSS プリプロセッサーのツールにはフレームワークやプラットフォームにかかわらず利用可能なものがある。そしてまた、プロジェクトを越えて CSS を効果的に再利用するにはどうすればいいのかという<a href="https://github.com/alphagov/govuk_frontend_toolkit" title="GOV.UK Frontend Toolkit">良い事例</a>もたくさんある。ほかのプロジェクトではどのように仕事をしているのかに触れ、知見を広げよう。</p>
+<p>君はプロのウェブ・ディベロッパーだ。コードを書くのにもうメモ帳を使ってはいないだろうし、作業にもっとも適したツールを使うこと。CSSプリプロセッサーのツールにはフレームワークやプラットフォームにかかわらず利用可能なものがある。そしてまた、プロジェクトを越えてCSSを効果的に再利用するにはどうすればいいのかという<a href="https://github.com/alphagov/govuk_frontend_toolkit" title="GOV.UK Frontend Toolkit">良い事例</a>もたくさんある。ほかのプロジェクトではどのように仕事をしているのかに触れ、知見を広げよう。</p>
 
 <h3 id="build-static-prototypes">「静的なプロトタイプを作ろう。すべてのスクリーンショットを残そう」</h3>
 
-<p>ウェブサイトやアプリケーションはふつう、よくあるイディオムの集まりから出来ている。ラベルと入力ボックスからなるフォーム、<code>nav</code> 要素内のリンクのリスト、ラベルと値のリストなど。どのような機能の実装にとりかかるにせよ、まずは静的な HTML として適切な構造のマークアップを組み立てることからはじめよう。この方法はコードがあとあと破綻しないためのテスト・ケースになるだけではなく、チームの新しいメンバーが途中経過を知るための助けにもなる。また手動でも自動のテスト・スイートでも、ページやアプリケーションのスクリーンショットを撮っておけば、継続的インテグレーションのテストにおいて壊れている箇所を見つけるのに役立つ。</p>
+<p>ウェブサイトやアプリケーションはふつう、よくあるイディオムの集まりから出来ている。ラベルと入力ボックスからなるフォーム、<code>nav</code>要素内のリンクのリスト、ラベルと値のリストなど。どのような機能の実装にとりかかるにせよ、まずは静的なHTMLとして適切な構造のマークアップを組み立てることからはじめよう。この方法はコードがあとあと破綻しないためのテスト・ケースになるだけではなく、チームの新しいメンバーが途中経過を知るための助けにもなる。また手動でも自動のテスト・スイートでも、ページやアプリケーションのスクリーンショットを撮っておけば、継続的インテグレーションのテストにおいて壊れている箇所を見つけるのに役立つ。</p>
 
 <hr>
 
-<p>複雑なウェブ・アプリケーションにおいて、優れた CSS アーキテクチャーを構築するのは難しい (結局のところ、良いフロントエンド・ディベロッパーがこれほど求められる理由はここにある)。かと言って独善的な「ルール」を課してしまうと、それはプロジェクトに新しく加わる人にとってもすでに関わっている人にとっても、事態をより困難にするだけだ。そのルールは最後には、無駄な複雑さや、うんざりするようなメンテナンス・コストを生じることになる。</p>
+<p>複雑なウェブ・アプリケーションにおいて、優れたCSSアーキテクチャーを構築するのは難しい (結局のところ、良いフロントエンド・ディベロッパーがこれほど求められる理由はここにある)。かと言って独善的な「ルール」を課してしまうと、それはプロジェクトに新しく加わる人にとってもすでに関わっている人にとっても、事態をより困難にするだけだ。そのルールは最後には、無駄な複雑さや、うんざりするようなメンテナンス・コストを生じることになる。</p>
 
 <p>自分が作っているプロダクトの目的を自問してみれば、プロダクトのあらゆる面について、どう表現するかだけではなく、どう構造化するかについてより重視するようになるはずだ。ウェブはセマンティックなメディアである、ということを指針にしよう。</p>
 
 <blockquote>
-  <p>すべての有機物と無機物、すべての形而下のものと形而上のもの、すべての人間的なものと超人間的なもの、知恵と心と魂のすべての真の姿に、広く浸透する法則がある。生命はその表現により識別され、形態はつねに機能に従うという法則だ。 <br>
+  <p>すべての有機物と無機物、すべての形而下のものと形而上のもの、すべての人間的なものと超人間的なもの、知恵と心と魂のすべての真の姿に、広く浸透する法則がある。生命はその表現により識別され、形態はつねに機能に従うという法則だ。<br>
   </p><footer>— ルイス・サリヴァン<a href="#fn:sullivan" id="fnref:sullivan" title="See footnote" class="footnote">9</a>
 </footer></blockquote>
 
 <h2 id="thanks">謝辞</h2>
 
-<p>この記事を書くにあたっては、以下の人たちからのフィードバックに大いに助けられた。<a href="http://twitter.com/cackhanded" title="Mark Norman Francis on Twitter">Mark Norman Francis</a>、<a href="http://twitter.com/intranation" title="Brad Wright on Twitter">Brad Wright</a>、<a href="http://twitter.com/rossbruniges" title="Ross Bruniges on Twitter">Ross Bruniges</a>、<a href="http://twitter.com/jaffathecake" title="Jake Archibald on Twitter">Jake Archibald</a>、そして <a href="http://twitter.com/ptg" title="Patrick Griffiths on Twitter">Patrick Griffiths</a>。</p>
+<p>この記事を書くにあたっては、以下の人たちからのフィードバックに大いに助けられた。<a href="http://twitter.com/cackhanded" title="Mark Norman Francis on Twitter">Mark Norman Francis</a>、<a href="http://twitter.com/intranation" title="Brad Wright on Twitter">Brad Wright</a>、<a href="http://twitter.com/rossbruniges" title="Ross Bruniges on Twitter">Ross Bruniges</a>、<a href="http://twitter.com/jaffathecake" title="Jake Archibald on Twitter">Jake Archibald</a>、そして<a href="http://twitter.com/ptg" title="Patrick Griffiths on Twitter">Patrick Griffiths</a>。</p>
 
 <div class="footnotes"><hr><ol><li id="fn:karlton"><a href="http://martinfowler.com/bliki/TwoHardThings.html">Two Hard Things</a> <a href="#fnref:karlton" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:html5-dom"><a href="http://www.w3.org/TR/html5/dom.html#classes">W3C: Semantics, structure, and APIs of HTML documents</a> <a href="#fnref:html5-dom" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:celik"><a href="http://tantek.com/2012/353/b1/why-html-classes-css-class-selectors">Why you should say HTML classes, CSS class selectors, or CSS pseudo-classes, but not CSS classes</a> <a href="#fnref:celik" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:gaynor"><a href="https://twitter.com/alex_gaynor/statuses/389502802265133056">Twitter / alex_gaynor: Quick test for if your HTML …</a> <a href="#fnref:gaynor" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:gallagher"><a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">About HTML semantics and front-end architecture</a> <a href="#fnref:gallagher" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:matthijs"><a href="http://www.onderhond.com/blog/cost-of-performance-css-selector-rewriting">The Cost of Performance</a> <a href="#fnref:matthijs" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:raymond"><a href="http://www.faqs.org/docs/artu/transparencychapter.html">The Art of Unix Programming</a> <a href="#fnref:raymond" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:wilcox"><a href="http://2002-2012.mattwilcox.net/archive/entry/id/1054/">CSS Lint is harmful</a> <a href="#fnref:wilcox" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:sullivan"><a href="http://en.wikipedia.org/wiki/Form_follows_function">Wikipedia: Form follows function</a> <a href="#fnref:sullivan" title="Return to article" class="reversefootnote">↩</a></li></ol></div>
 
@@ -235,7 +235,7 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
 
 <footer role="contentinfo">
     <hr>
-    <p>このコンテンツは <a href="http://www.kapowaz.net/articles/cargo-cult-css">kapowaz: Cargo Cult CSS</a> の日本語訳です。</p>
+    <p>このコンテンツは<a href="http://www.kapowaz.net/articles/cargo-cult-css">kapowaz: Cargo Cult CSS</a>の日本語訳です。</p>
     <table class="colophon">
         <tbody>
             <tr>
@@ -248,7 +248,7 @@ div</span><span class="pun">.</span><span class="pln">breaking </span><span clas
             </tr>
             <tr>
                 <th>公開日</th>
-                <td>2014 年 2 月 13 日</td>
+                <td>2014年2月13日</td>
             </tr>
             <tr>
                 <th>更新履歴</th>
