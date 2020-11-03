@@ -23,7 +23,7 @@
 
 <p>CSSを書いたり管理したりするにはなんらかの方法論があった方が良い、と広く考えられている。しかし実際に取り入れられている手法の中には、セマンティクス上の品質や、長期にわたるメンテナンス性に悪影響を与えるものもある。ここでは、CSSの「フレームワーク方法論」として提唱されているテクニックの問題点や、その問題を僕たちウェブ・ディベロッパーがどうすれば解決できるかについて論じてみようと思う。</p>
 
-<p>現在、CSS開発におけるフレームワーク方法論として、<a href="http://bem.info/method/definitions/" title="Block, Element, Modifier — Definitions">BEM</a>など類似のテクニックがいくつかあるが、もっとも有名なのは<a href="https://github.com/stubbornella/oocss/wiki/faq" title="OOCSS FAQ">OOCSS</a>だろう。これらの方法論はCSSにオブジェクト指向プログラミングの原則を適用しようと試みる。しかしながら、両者の間にはそもそも<em>宣言型スタイル言語</em>と<em>オブジェクト指向ソフトウェア設計原則</em>というコンセプト上の不一致がある。その結果、経験の浅いディベロッパーが気づきにくいような複雑な問題を持ち込んでしまう。たいへん困ったことに、著名なブロガーたちが「ベスト・プラクティス」として喧伝しているおかげで、これらの方法論の採用が広く見られるようになってしまった。ごく一部の高いトラフィックを持つサイトを除いて、これら方法論によって得られるとされる利点を証明する根拠はない。このことからもわかるとおり、CSSのフレームワーク方法論は、人を惑わせ害を及ぼす<a href="http://neurotheory.columbia.edu/~ken/cargo_cult.html" title="“Cargo Cult Science” by Richard Feynman">カーゴ・カルト</a>の典型であると僕は考える。</p>
+<p>現在、CSS開発におけるフレームワーク方法論として、<a href="http://bem.info/method/definitions/" title="Block, Element, Modifier — Definitions">BEM</a>など類似のテクニックがいくつかあるが、もっとも有名なのは<a href="https://github.com/stubbornella/oocss/wiki/faq" title="OOCSS FAQ">OOCSS</a>だろう。これらの方法論はCSSにオブジェクト指向プログラミングの原則を適用しようと試みる。しかしながら、両者の間にはそもそも<em>宣言型スタイル言語</em>と<em>オブジェクト指向ソフトウェア設計原則</em>というコンセプト上の不一致がある。その結果、経験の浅いディベロッパーが気づきにくいような複雑な問題を持ち込んでしまう。たいへん困ったことに、著名なブロガーたちが「ベスト・プラクティス」として喧伝しているおかげで、これらの方法論の採用が広く見られるようになってしまった。ごく一部の高いトラフィックを持つサイトを除いて、これら方法論によって得られるとされる利点を証明する根拠はない。このことからもわかるとおり、CSSのフレームワーク方法論は、人を惑わせ害を及ぼす<a href="http://calteches.library.caltech.edu/51/2/CargoCult.htm" title="“Cargo Cult Science” by Richard Feynman">カーゴ・カルト</a>の典型であると僕は考える。</p>
 
 <h2 id="semantics">セマンティクス</h2>
 
@@ -72,7 +72,7 @@
   <figcaption>&#x2015;&#x2015;ニコラス・ギャラガー<sup><a href="#fn:gallagher" id="fnref:gallagher" title="See footnote" class="footnote">5</a></sup></figcaption>
 </figure>
 
-<p>これは恣意的な表現だ。今日作られ、発表されているコンテンツの、将来にわたる利用のすべての可能性に対して、「合意を得た名前の集まり」とは。この表現はCSSフレームワークのイデオロギーを正当化したいがためのものだ。非セマンティックなクラス名を許すと、ドキュメントの構造とコンテンツがプレゼンテーションの影響を受けるようになってしまう。それは明らかに<a href="http://en.wikipedia.org/wiki/Law_of_Demeter" title="Law of Demeter">関心の分離</a>に反する。</p>
+<p>これは恣意的な表現だ。今日作られ、発表されているコンテンツの、将来にわたる利用のすべての可能性に対して、「合意を得た名前の集まり」とは。この表現はCSSフレームワークのイデオロギーを正当化したいがためのものだ。非セマンティックなクラス名を許すと、ドキュメントの構造とコンテンツがプレゼンテーションの影響を受けるようになってしまう。それは明らかに<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%A1%E3%83%86%E3%83%AB%E3%81%AE%E6%B3%95%E5%89%87" title="デメテルの法則 - Wikipedia">関心の分離</a>に反する。</p>
 
 <h2 id="maintainability">メンテナンス性</h2>
 
@@ -256,10 +256,10 @@ div.breaking {
   <li id="fn:karlton"><a href="http://martinfowler.com/bliki/TwoHardThings.html">Two Hard Things</a> <a href="#fnref:karlton" title="本文に戻る">↩</a></li>
   <li id="fn:html5-dom"><a href="http://www.w3.org/TR/html5/dom.html#classes">W3C: Semantics, structure, and APIs of HTML documents</a> <a href="#fnref:html5-dom" title="本文に戻る">↩</a></li>
   <li id="fn:celik"><a href="http://tantek.com/2012/353/b1/why-html-classes-css-class-selectors">Why you should say HTML classes, CSS class selectors, or CSS pseudo-classes, but not CSS classes</a> <a href="#fnref:celik" title="本文に戻る">↩</a></li>
-  <li id="fn:gaynor"><a href="https://twitter.com/alex_gaynor/statuses/389502802265133056">Twitter / alex_gaynor: Quick test for if your HTML …</a> <a href="#fnref:gaynor" title="本文に戻る">↩</a></li>
+  <li id="fn:gaynor"><a href="https://web.archive.org/web/20140415000102/https://twitter.com/alex_gaynor/statuses/389502802265133056">Twitter / alex_gaynor: Quick test for if your HTML …</a> <a href="#fnref:gaynor" title="本文に戻る">↩</a></li>
   <li id="fn:gallagher"><a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">About HTML semantics and front-end architecture</a> <a href="#fnref:gallagher" title="本文に戻る">↩</a></li>
   <li id="fn:matthijs"><a href="http://www.onderhond.com/blog/cost-of-performance-css-selector-rewriting">The Cost of Performance</a> <a href="#fnref:matthijs" title="本文に戻る">↩</a></li>
-  <li id="fn:raymond"><a href="http://www.faqs.org/docs/artu/transparencychapter.html">The Art of Unix Programming</a> <a href="#fnref:raymond" title="本文に戻る">↩</a></li>
+  <li id="fn:raymond"><a href="http://www.catb.org/~esr/writings/taoup/html/transparencychapter.html">The Art of Unix Programming</a> <a href="#fnref:raymond" title="本文に戻る">↩</a></li>
   <li id="fn:wilcox"><a href="http://2002-2012.mattwilcox.net/archive/entry/id/1054/">CSS Lint is harmful</a> <a href="#fnref:wilcox" title="本文に戻る">↩</a></li>
   <li id="fn:sullivan"><a href="http://en.wikipedia.org/wiki/Form_follows_function">Wikipedia: Form follows function</a> <a href="#fnref:sullivan" title="本文に戻る">↩</a></li>
 </ol>
@@ -267,7 +267,7 @@ div.breaking {
 </main>
 
 <footer class="PageFooter">
-  <p>このコンテンツは<a href="http://www.kapowaz.net/articles/cargo-cult-css">kapowaz: Cargo Cult CSS</a>の日本語訳です。</p>
+  <p>このコンテンツは<a href="https://web.archive.org/web/20200503122723/https://www.kapowaz.net/articles/cargo-cult-css">kapowaz: Cargo Cult CSS</a>の日本語訳です。</p>
   <table class="Colophon">
     <tbody>
       <tr>
